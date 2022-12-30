@@ -1,4 +1,17 @@
-/// main.hpp
+/// tetris.hpp
+
+#define _CRT_SECURE_NO_WARNINGS
+
+/******************************
+*
+* freetype
+*
+/******************************/
+
+#pragma comment(lib, "freetype.lib")
+
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 /******************************
 *
@@ -24,6 +37,8 @@
 /******************************/
 
 #include <array>
+#include <filesystem>
+#include <iostream>
 #include <string>
 #include <vector>
 

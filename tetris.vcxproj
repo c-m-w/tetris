@@ -92,6 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -106,6 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -144,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\drawing\coordinate.cpp" />
+    <ClCompile Include="source\drawing\font_engine.cpp" />
     <ClCompile Include="source\drawing\primitive_color.cpp" />
     <ClCompile Include="source\drawing\render_engine.cpp" />
     <ClCompile Include="source\drawing\primitive.cpp" />
@@ -153,11 +156,13 @@
   <ItemGroup>
     <ClInclude Include="source\drawing\coordinate.hpp" />
     <ClInclude Include="source\drawing\drawing.hpp" />
+    <ClInclude Include="source\drawing\font_engine.hpp" />
     <ClInclude Include="source\drawing\primitive_color.hpp" />
     <ClInclude Include="source\drawing\render_engine.hpp" />
     <ClInclude Include="source\drawing\shaders.hpp" />
     <ClInclude Include="source\drawing\primitive.hpp" />
     <ClInclude Include="source\tetris.hpp" />
+    <ClInclude Include="source\utils\files.hpp" />
     <ClInclude Include="source\utils\i_base.hpp" />
     <ClInclude Include="source\utils\raw_vector.hpp" />
     <ClInclude Include="source\utils\singleton.hpp" />

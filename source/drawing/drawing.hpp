@@ -9,4 +9,5 @@ constexpr auto WINDOW_HEIGHT = 768;
 #include "coordinate.hpp"
 //#include "primitive.hpp"
 //#include "primitive_color.hpp"
+#include "font_engine.hpp"
 #include "render_engine.hpp"

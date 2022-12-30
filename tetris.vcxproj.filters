@@ -33,6 +33,9 @@
     <ClCompile Include="source\utils\raw_vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\drawing\font_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\tetris.hpp">
@@ -69,6 +72,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\utils\raw_vector.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\drawing\font_engine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utils\files.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
