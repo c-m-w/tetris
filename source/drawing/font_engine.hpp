@@ -17,4 +17,5 @@ public:
 	bool shutdown() override;
 
 	bitmap make_bitmap(std::string const& text, unsigned size, color_t const& color);
+	location get_text_size(std::string const& text, unsigned size);
 };

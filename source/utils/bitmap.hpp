@@ -207,8 +207,7 @@ public:
 		return crop(y,
 			x,
 			rows - bottom_padding() - y,
-			columns - right_padding() - x)
-			.format();
+			columns - right_padding() - x);
 	}
 
 	unsigned height() const

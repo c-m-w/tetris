@@ -26,7 +26,19 @@ public:
 	void begin_scene();
 	void end_scene();
 
-	void draw_primitive(primitive p, primitive_color c);
+	void draw_primitive(primitive p, primitive_color c, bool const outline = false);
 	void draw_textured_primitive(primitive p, uv u, unsigned texture_id);
-	void draw_text(std::string const& text, unsigned size, color_t const& color, coordinate<pixel_t> top_left);
+
+	void draw_rect(location const & position,
+				   dimension const & size,
+				   color_t const& top_left,
+				   color_t const& top_right,
+				   color_t const& bottom_left,
+				   color_t const& bottom_right,
+				   bool const outlined = false);
+	void draw_rect(location const& position,
+				   dimension const& size,
+				   color_t const& c,
+				   bool const outlined = false);
+	void draw_text(std::string const& text, unsigned size, color_t const& color, location top_left);
 };

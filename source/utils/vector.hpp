@@ -38,4 +38,20 @@ public:
 
 		return result;
 	}
+
+	vector<T, N>& operator+=(vector<T, N> const& rhs)
+	{
+		*this = *this + rhs;
+		return *this;
+	}
+
+	vector<T, N> operator+(T const rhs) const // todo make this better. this is ass
+	{
+		vector<T, N> result;
+
+		for (auto i = 0; i < components.size(); i++)
+			result[i] = (*this)[i] + rhs;
+
+		return result;
+	}
 };

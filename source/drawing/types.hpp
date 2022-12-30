@@ -14,6 +14,13 @@ public:
 		vector{ float(args)... }
 	{ }
 
+	color_t(unsigned const rgba):
+		vector{float((rgba & 0xFF000000) >> 24) / float(0xFF),
+			   float((rgba & 0x00FF0000) >> 16) / float(0xFF),
+			   float((rgba & 0x0000FF00) >> 8) / float(0xFF),
+			   float((rgba & 0x000000FF) >> 0) / float(0xFF)}
+	{ }
+
 	unsigned hex() const
 	{
 		// NOTE: actually needs to be stored as abgr for rgba
@@ -27,3 +34,5 @@ public:
 using primitive = raw_vector<coordinate<relative_t>, 3>;
 using primitive_color = raw_vector<color_t, 3>;
 using uv = raw_vector<coordinate<relative_t>, 3>;
+using location = coordinate<pixel_t>;
+using dimension = coordinate<pixel_t>;

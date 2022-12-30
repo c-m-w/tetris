@@ -86,5 +86,17 @@
     <ClInclude Include="source\drawing\types.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\ui\ui.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ui\i_drawable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ui\button.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ui\container.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

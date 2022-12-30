@@ -25,7 +25,7 @@ int WINAPI WinMain(
 		return 0;
 
 	auto h = color_t(1.f, 0.f, 0.f, 0.1f).hex();
-	auto bmp = font_engine::get()->make_bitmap("agg", 24, color_t(1.f, 0.f, 0.f, 0.5f));
+	auto bmp = font_engine::get()->make_bitmap("agg", 24, color_t(1.f, 0.f, 0.f, 1.f));
 
 	for (auto row : bmp)
 	{
@@ -40,25 +40,19 @@ int WINAPI WinMain(
 		std::cout << std::endl;
 	}
 
-	/*for (auto i = 0; i < bmp.height(); i++)
-	{
-		for (auto j = 0; j < bmp.width(); j++)
-		{
-			if ((bmp[{i, j}] & 0xFF) > 0)
-				std::cout << "#";
-			else
-				std::cout << " ";
-		}
+	auto body = ui::get_body();
+	auto button = ui::button("button text", ui::TEXT_SMALL, { 100, 100 });
+	body->add_child(&button);
 
-		std::cout << std::endl;
-	}*/
 
 	do {
 		
 		render_engine::get()->begin_scene();
 
-		render_engine::get()->draw_primitive(d, e);
-		render_engine::get()->draw_text("test", 6, color_t(1.f, 1.f, 1.f, 0.5f), coordinate<pixel_t>(0, 0));
+		/*render_engine::get()->draw_primitive(d, e);
+		render_engine::get()->draw_text("jeremy sucks at coding", 4, color_t(1.f, 1.f, 1.f, 1.f), coordinate<pixel_t>(0, 0));
+		render_engine::get()->draw_rect({ 50, 50 }, { 100, 100 }, color_t(1.f, 0.f, 0.f, 0.5f), color_t(0.f, 1.f, 0.f, 0.75f), color_t(0.f, 0.f, 1.f, 1.f), color_t(1.f, 1.f, 1.f, 0.2f), true);*/
+		body->draw();
 
 		render_engine::get()->end_scene();
 

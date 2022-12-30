@@ -1,6 +1,7 @@
 /// font_engine.cpp
 
 #include "../tetris.hpp"
+#include "font_engine.hpp"
 
 bool font_engine::init()
 {
@@ -76,4 +77,11 @@ bitmap font_engine::make_bitmap(std::string const & text, unsigned size, color_t
 	}
 
 	return bmp.clip();
+}
+
+location font_engine::get_text_size(std::string const& text, unsigned size)
+{
+	auto bmp = make_bitmap(text, size, color_t(0xFFFFFFFF));
+
+	return { bmp.width(), bmp.height() };
 }

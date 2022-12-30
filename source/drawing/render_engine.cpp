@@ -131,7 +131,7 @@ bool render_engine::shutdown()
 
 void render_engine::begin_scene()
 {
-	glClearColor(0.f, 0.f, 0.4f, 0.f);
+	glClearColor(0.f, 0.f, 0.0f, 0.f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
@@ -141,7 +141,7 @@ void render_engine::end_scene()
 	glfwPollEvents();
 }
 
-void render_engine::draw_primitive(primitive p, primitive_color c)
+void render_engine::draw_primitive(primitive p, primitive_color c, bool const outline)
 {
 	auto array_id = 0u;
 
@@ -152,7 +152,7 @@ void render_engine::draw_primitive(primitive p, primitive_color c)
 	auto const color_id = make_array_buffer(c, 1, 4);
 
 	glUseProgram(default_program);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(outline ? GL_LINE_STRIP : GL_TRIANGLES, 0, 3);
 	glDisableVertexAttribArray(0);
 
 	glDeleteBuffers(1, &vertex_id);
@@ -177,9 +177,42 @@ void render_engine::draw_textured_primitive(primitive p, uv u, unsigned texture_
 	glDeleteBuffers(1, &uv_id);
 }
 
-void render_engine::draw_text(std::string const& text, unsigned size, color_t const& color, coordinate<pixel_t> top_left)
+void render_engine::draw_rect(location const& position,
+							  dimension const& size,
+							  color_t const& top_left,
+							  color_t const& top_right,
+							  color_t const& bottom_left,
+							  color_t const& bottom_right,
+							  bool const outlined)
 {
-	auto const bmp = font_engine::get()->make_bitmap(text, size, color).clip();
+	auto const p1 = primitive(coordinate<pixel_t>(position[0] + size[0], position[1]).to_relative(),
+		coordinate<pixel_t>(position[0], position[1]).to_relative(),
+		coordinate<pixel_t>(position[0], position[1] + size[1]).to_relative());
+	auto const p2 = primitive(coordinate<pixel_t>(position[0], position[1] + size[1]).to_relative(),
+		coordinate<pixel_t>(position[0] + size[0], position[1] + size[1]).to_relative(),
+		coordinate<pixel_t>(position[0] + size[0], position[1]).to_relative());
+	auto const c1 = primitive_color(top_right,
+		top_left,
+		bottom_left);
+	auto const c2 = primitive_color(bottom_left, 
+		bottom_right, 
+		top_right);
+
+	draw_primitive(p1, c1, outlined);
+	draw_primitive(p2, c2, outlined);
+}
+
+void render_engine::draw_rect(location const& position,
+							  dimension const& size,
+							  color_t const& c,
+							  bool const outlined)
+{
+	draw_rect(position, size, c, c, c, c, outlined);
+}
+
+void render_engine::draw_text(std::string const& text, unsigned size, color_t const& color, location top_left)
+{
+	auto const bmp = font_engine::get()->make_bitmap(text, size, color).format();
 
 	auto const p1 = primitive(coordinate<pixel_t>(top_left[0] + bmp.width(), top_left[1]).to_relative(),
 		coordinate<pixel_t>(top_left[0], top_left[1]).to_relative(),
