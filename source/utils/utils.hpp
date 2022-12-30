@@ -16,3 +16,4 @@ namespace utils
 #include "vector.hpp"
 #include "raw_vector.hpp"
 #include "files.hpp"
+#include "bitmap.hpp"

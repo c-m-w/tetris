@@ -27,13 +27,14 @@ bool font_engine::shutdown()
 	return true;
 }
 
-unsigned char** font_engine::make_bitmap(std::string const & text, unsigned size)
+bitmap font_engine::make_bitmap(std::string const & text, unsigned size, color_t const & color)
 {
 	FT_Set_Char_Size(font, size * 64, 0, 300, 0);
 	
+	auto const hex = color.hex();
 	auto const slot = font->glyph;
 	FT_Vector pen{};
-	static unsigned char bitmap[200][200];
+	auto bmp = bitmap(WINDOW_HEIGHT, WINDOW_WIDTH);
 	unsigned char previous = 0;
 
 	for (auto c : text)
@@ -56,15 +57,15 @@ unsigned char** font_engine::make_bitmap(std::string const & text, unsigned size
 			x1 < slot->bitmap_left + slot->bitmap.width;
 			x1++, x2++)
 		{
-			for (auto y1 = 200 - slot->bitmap_top - 8, y2 = 0;
-				y1 < 200 - slot->bitmap_top - 8 + slot->bitmap.rows;
+			for (auto y1 = bmp.height() - slot->bitmap_top - size, y2 = 0u;
+				y1 < bmp.height() - slot->bitmap_top - size + slot->bitmap.rows;
 				y1++, y2++)
 			{
-				if (x1 < 0 || x1 > 200
-					|| y1 < 0 || y1 > 200)
+				if (x1 < 0 || x1 > WINDOW_WIDTH
+					|| y1 < 0 || y1 > WINDOW_HEIGHT)
 					continue;
 
-				bitmap[y1][x1] = slot->bitmap.buffer[y2 * slot->bitmap.width + x2];
+				bmp[{y1, x1}] = hex & 0x00FFFFFF | ((((hex & 0xFF000000) >> 24) * slot->bitmap.buffer[y2 * slot->bitmap.width + x2]) / 0xFF) << 24;
 			}
 		}
 
@@ -74,5 +75,5 @@ unsigned char** font_engine::make_bitmap(std::string const & text, unsigned size
 		previous = slot->glyph_index;
 	}
 
-	return reinterpret_cast<unsigned char**>(bitmap);
+	return bmp.clip();
 }

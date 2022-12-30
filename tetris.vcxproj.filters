@@ -80,5 +80,11 @@
     <ClInclude Include="source\utils\files.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\utils\bitmap.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\drawing\types.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

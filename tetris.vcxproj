@@ -161,7 +161,9 @@
     <ClInclude Include="source\drawing\render_engine.hpp" />
     <ClInclude Include="source\drawing\shaders.hpp" />
     <ClInclude Include="source\drawing\primitive.hpp" />
+    <ClInclude Include="source\drawing\types.hpp" />
     <ClInclude Include="source\tetris.hpp" />
+    <ClInclude Include="source\utils\bitmap.hpp" />
     <ClInclude Include="source\utils\files.hpp" />
     <ClInclude Include="source\utils\i_base.hpp" />
     <ClInclude Include="source\utils\raw_vector.hpp" />

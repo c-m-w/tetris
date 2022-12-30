@@ -1,4 +1,9 @@
-﻿  tetris.cpp
+﻿  render_engine.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
 C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\utils\bitmap.hpp(182,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\utils\bitmap.hpp(183,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\utils\bitmap.hpp(195,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\utils\bitmap.hpp(196,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\render_engine.cpp(30): warning C4715: 'render_engine::make_window': not all control paths return a value
   tetris.vcxproj -> C:\Users\cole\source\repos\tetris\Debug\tetris.exe

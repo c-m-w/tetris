@@ -34,8 +34,7 @@ public:
 	{
 		return coordinate<relative_t>(
 			relative_t((*this)[0] * 2.f / WINDOW_WIDTH - 1.f),
-			relative_t((*this)[1] * -2.f / WINDOW_HEIGHT + 1.f),
-			0.f
+			relative_t((*this)[1] * -2.f / WINDOW_HEIGHT + 1.f)
 		);
 	};
 };
