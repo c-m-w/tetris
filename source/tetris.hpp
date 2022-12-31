@@ -42,15 +42,21 @@
 *
 /******************************/
 
-#include <array>
-#include <filesystem>
-#include <iostream>
-#include <string>
-#include <vector>
-
 #define WIN32_LEAN_AND_MEAN
 
 #include <Windows.h>
+
+#undef max
+#undef min
+
+#include <algorithm>
+#include <atomic>
+#include <array>
+#include <filesystem>
+#include <functional>
+#include <iostream>
+#include <string>
+#include <vector>
 
 /******************************
 *
@@ -61,3 +67,12 @@
 #include "utils/utils.hpp"
 #include "drawing/drawing.hpp"
 #include "ui/ui.hpp"
+#include "game/game.hpp"
+
+/******************************
+*
+* globals
+*
+/******************************/
+
+inline std::atomic<bool> should_exit = false;

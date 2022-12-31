@@ -9,6 +9,17 @@ namespace utils
 		AllocConsole();
 		freopen("CONOUT$", "w", stdout);
 	}
+
+	inline unsigned long long time()
+	{
+		return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	}
+
+	template<typename T>
+	T random_number(T const min, T const max);
+
+	template<>
+	int random_number<int>(int const min, int const max);
 }
 
 #include "singleton.hpp"
@@ -17,3 +28,5 @@ namespace utils
 #include "raw_vector.hpp"
 #include "files.hpp"
 #include "bitmap.hpp"
+
+#include "utils.ipp"

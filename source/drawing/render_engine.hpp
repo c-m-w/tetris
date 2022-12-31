@@ -6,9 +6,6 @@ class render_engine : public i_base<render_engine>
 {
 private:
 
-	constexpr static auto WINDOW_NAME = "test";
-
-	GLFWwindow* window;
 	unsigned default_program = 0u;
 	unsigned texture_program = 0u;
 

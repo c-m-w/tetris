@@ -150,7 +150,10 @@
     <ClCompile Include="source\drawing\primitive_color.cpp" />
     <ClCompile Include="source\drawing\render_engine.cpp" />
     <ClCompile Include="source\drawing\primitive.cpp" />
+    <ClCompile Include="source\drawing\window.cpp" />
+    <ClCompile Include="source\game\game.cpp" />
     <ClCompile Include="source\tetris.cpp" />
+    <ClCompile Include="source\ui\ui.cpp" />
     <ClCompile Include="source\utils\raw_vector.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,10 +165,14 @@
     <ClInclude Include="source\drawing\shaders.hpp" />
     <ClInclude Include="source\drawing\primitive.hpp" />
     <ClInclude Include="source\drawing\types.hpp" />
+    <ClInclude Include="source\drawing\window.hpp" />
+    <ClInclude Include="source\game\block_manager.hpp" />
+    <ClInclude Include="source\game\game.hpp" />
     <ClInclude Include="source\tetris.hpp" />
     <ClInclude Include="source\ui\button.hpp" />
     <ClInclude Include="source\ui\container.hpp" />
     <ClInclude Include="source\ui\i_drawable.hpp" />
+    <ClInclude Include="source\ui\text.hpp" />
     <ClInclude Include="source\ui\ui.hpp" />
     <ClInclude Include="source\utils\bitmap.hpp" />
     <ClInclude Include="source\utils\files.hpp" />
@@ -174,6 +181,9 @@
     <ClInclude Include="source\utils\singleton.hpp" />
     <ClInclude Include="source\utils\utils.hpp" />
     <ClInclude Include="source\utils\vector.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\utils\utils.ipp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

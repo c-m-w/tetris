@@ -10,8 +10,8 @@ public:
 		vector()
 	{}
 
-	template<class... Ts> color_t(Ts... args) :
-		vector{ float(args)... }
+	color_t(float const r, float const g, float const b, float const a):
+		vector{ r, g, b, a }
 	{ }
 
 	color_t(unsigned const rgba):
@@ -20,6 +20,13 @@ public:
 			   float((rgba & 0x0000FF00) >> 8) / float(0xFF),
 			   float((rgba & 0x000000FF) >> 0) / float(0xFF)}
 	{ }
+
+	color_t& operator=(unsigned const rgba)
+	{
+		*this = color_t(rgba);
+
+		return *this;
+	}
 
 	unsigned hex() const
 	{

@@ -2,7 +2,7 @@
 
 #pragma once
 
-class container : public ui::i_drawable
+class container : public i_drawable
 {
 public:
 
@@ -15,19 +15,24 @@ public:
 
 private:
 
-	std::vector<i_drawable*> children;
+	std::vector<i_drawable*> children { };
 	DRAW_MODE draw_mode = DRAW_NONE;
 
 public:
 
 	container(coordinate<pixel_t> const& position, dimension const& size, DRAW_MODE const draw_mode):
-		i_drawable(position, size), draw_mode(draw_mode)
+		i_drawable(position, size, DRAWABLE_CONTAINER), draw_mode(draw_mode)
 	{ }
 
 	void add_child(i_drawable* child)
 	{
 		children.emplace_back(child);
 		child->set_parent(this);
+	}
+
+	void clear()
+	{
+		children.clear();
 	}
 
 	void draw() override
@@ -54,4 +59,6 @@ public:
 		for (auto const& child : children)
 			child->draw();
 	}
+
+	friend class ::ui;
 };

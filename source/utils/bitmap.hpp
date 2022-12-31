@@ -179,8 +179,8 @@ public:
 	{
 		auto result = bitmap(rows, columns);
 
-		for (auto i = 0; i < rows; i++)
-			for (auto j = 0; j < columns; j++)
+		for (auto i = 0u; i < rows; i++)
+			for (auto j = 0u; j < columns; j++)
 				result.data.get()[i * columns + j] = data.get()[(i + y) * this->columns + j + x];
 
 		return result;
@@ -192,8 +192,8 @@ public:
 		auto const new_width = unsigned(pow(2, ceil(log2(width()))));
 		auto result = bitmap(new_height, new_width);
 
-		for (auto i = 0; i < rows; i++)
-			for (auto j = 0; j < columns; j++)
+		for (auto i = 0u; i < rows; i++)
+			for (auto j = 0u; j < columns; j++)
 				result.data.get()[i * result.width() + j] = data.get()[i* columns + j];
 
 		return result;

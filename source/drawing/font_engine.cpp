@@ -54,7 +54,7 @@ bitmap font_engine::make_bitmap(std::string const & text, unsigned size, color_t
 			pen.x += kerning.x >> 6;
 		}
 
-		for (auto x1 = slot->bitmap_left, x2 = 0;
+		for (auto x1 = static_cast<unsigned>(slot->bitmap_left), x2 = 0u;
 			x1 < slot->bitmap_left + slot->bitmap.width;
 			x1++, x2++)
 		{

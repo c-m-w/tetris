@@ -4,29 +4,14 @@
 
 bool render_engine::make_window()
 {
-	glewExperimental = true;
-
-	if (!glfwInit())
-		return false;
-
-	glfwWindowHint(GLFW_SAMPLES, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-	window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_NAME, nullptr, nullptr);
-
-	if (nullptr == window)
-		return false;
-
-	glfwMakeContextCurrent(window);
-
 	if (GLEW_OK != glewInit())
 		return false;
 
-	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+	glfwSetInputMode(window::get()->wnd, GLFW_STICKY_KEYS, GL_TRUE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	return true;
 }
 
 bool render_engine::make_shader(unsigned& program, char const* const vs, char const* const fs)
@@ -137,8 +122,8 @@ void render_engine::begin_scene()
 
 void render_engine::end_scene()
 {
-	glfwSwapBuffers(window);
-	glfwPollEvents();
+	glfwSwapBuffers(window::get()->wnd);
+	window::get()->update();
 }
 
 void render_engine::draw_primitive(primitive p, primitive_color c, bool const outline)
