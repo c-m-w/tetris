@@ -15,6 +15,11 @@ namespace utils
 		return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	}
 
+	inline void sleep(unsigned long long ms)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+	}
+
 	template<typename T>
 	T random_number(T const min, T const max);
 

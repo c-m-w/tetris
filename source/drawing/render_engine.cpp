@@ -142,6 +142,7 @@ void render_engine::draw_primitive(primitive p, primitive_color c, bool const ou
 
 	glDeleteBuffers(1, &vertex_id);
 	glDeleteBuffers(1, &color_id);
+	glDeleteVertexArrays(1, &array_id);
 }
 
 void render_engine::draw_textured_primitive(primitive p, uv u, unsigned texture_id)
@@ -160,6 +161,7 @@ void render_engine::draw_textured_primitive(primitive p, uv u, unsigned texture_
 
 	glDeleteBuffers(1, &vertex_id);
 	glDeleteBuffers(1, &uv_id);
+	glDeleteVertexArrays(1, &array_id);
 }
 
 void render_engine::draw_rect(location const& position,

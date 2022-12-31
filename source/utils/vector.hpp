@@ -107,7 +107,7 @@ public:
 		*
 		*	| x' |   | cos(angle)  -sin(angle) | | x |
 		*	|    | = |                         | |   |
-		*   | y' |   | sin(angle)   cos(angle) | | y |
+		*	| y' |   | sin(angle)   cos(angle) | | y |
 		* 
 		*/
 		auto const x = std::cos(angle) * components[0] - std::sin(angle) * components[1];
