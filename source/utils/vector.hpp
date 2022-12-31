@@ -98,4 +98,32 @@ public:
 
 		return result;
 	}
+
+	vector<T, N> rotate2d(double const angle, bool round = false) const
+	{
+		vector<T, N> result = *this;
+
+		/*
+		*
+		*	| x' |   | cos(angle)  -sin(angle) | | x |
+		*	|    | = |                         | |   |
+		*   | y' |   | sin(angle)   cos(angle) | | y |
+		* 
+		*/
+		auto const x = std::cos(angle) * components[0] - std::sin(angle) * components[1];
+		auto const y = std::sin(angle) * components[0] + std::cos(angle) * components[1];
+
+		if (round)
+		{
+			result[0] = static_cast<T>(std::round(x));
+			result[1] = static_cast<T>(std::round(y));
+		}
+		else
+		{
+			result[0] = static_cast<T>(x);
+			result[1] = static_cast<T>(y);
+		}
+
+		return result;
+	}
 };

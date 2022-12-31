@@ -2,6 +2,31 @@
 
 #include "../tetris.hpp"
 
+void game::callback_up()
+{
+	game::get()->current_manager->rotate();
+}
+
+void game::callback_down()
+{
+	game::get()->current_manager->move_down();
+}
+
+void game::callback_left()
+{
+	game::get()->current_manager->move_left();
+}
+
+void game::callback_right()
+{
+	game::get()->current_manager->move_right();
+}
+
+void game::callback_space()
+{
+	game::get()->current_manager->drop();
+}
+
 void game::create_screen()
 {
 	auto* const body = ui::get()->get_body();
@@ -30,25 +55,38 @@ void game::create_screen()
 	}
 }
 
-game::game() :
-	preview_manager(30, 20, 500),
-	game_manager(10, 20, 350)
-{ }
+void game::init_manager()
+{
+	if (current_manager)
+		current_manager.release();
+
+	if (SCREEN_TITLE == screen)
+		current_manager = std::make_unique<block_manager>(30, 20, 500);
+	else if (SCREEN_GAME == screen)
+		current_manager = std::make_unique<block_manager>(10, 20, 350);
+	else
+		current_manager = nullptr;
+}
 
 bool game::init()
 {
 	screen = SCREEN_TITLE;
 	create_screen();
+	init_manager();
+
+	window::get()->add_key_callback(callback_up, GLFW_KEY_UP);
+	window::get()->add_key_callback(callback_down, GLFW_KEY_DOWN);
+	window::get()->add_key_callback(callback_left, GLFW_KEY_LEFT);
+	window::get()->add_key_callback(callback_right, GLFW_KEY_RIGHT);
+	window::get()->add_key_callback(callback_space, GLFW_KEY_SPACE);
 
 	return true;
 }
 
 void game::frame()
 {
-	if (screen == SCREEN_TITLE)
-		preview_manager.frame();
-	else if (screen == SCREEN_GAME)
-		game_manager.frame();
+	if (current_manager)
+		current_manager->frame();
 
 	ui::get()->get_body()->draw();
 }

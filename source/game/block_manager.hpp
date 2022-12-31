@@ -114,7 +114,7 @@ private:
 		current.position = { utils::random_number(0, static_cast<int>(nx) - x_extension - 1), 0 };
 	}
 
-	bool obstructed()
+	bool obstructed_down()
 	{
 		for (auto const block : current.relative_blocks)
 			if (auto const abs = current.position + block;
@@ -125,28 +125,48 @@ private:
 		return false;
 	}
 
+	bool obstructed_left()
+	{
+		for (auto const block : current.relative_blocks)
+			if (auto const abs = current.position + block;
+				abs[0] == 0
+				|| squares[abs[0] - 1][abs[1]].parent_block != BLOCK_NONE)
+				return true;
+
+		return false;
+	}
+
+	bool obstructed_right()
+	{
+		for (auto const block : current.relative_blocks)
+			if (auto const abs = current.position + block;
+				abs[0] == nx - 1
+				|| squares[abs[0] + 1][abs[1]].parent_block != BLOCK_NONE)
+				return true;
+
+		return false;
+	}
+
+	void cement_block()
+	{
+		for (auto const& block : current.relative_blocks)
+		{
+			auto const abs = current.position + block;
+
+			squares[abs[0]][abs[1]].parent_block = current.block_type;
+		}
+
+		current.block_type = BLOCK_NONE;
+	}
+
 	void move()
 	{
 		if (auto const time = utils::time(); time - last_fall_time >= fall_time)
 		{
-			if (obstructed())
-			{
-				for (auto const & block : current.relative_blocks)
-				{
-					auto const abs = current.position + block;
-
-					squares[abs[0]][abs[1]].parent_block = current.block_type;
-				}
-
-				current.block_type = BLOCK_NONE;
-			}
+			if (obstructed_down())
+				cement_block();
 			else
-			{
-				for (auto& block : current.relative_blocks)
-				{
-					block[1] += 1;
-				}
-			}
+				current.position[1] += 1;
 
 			last_fall_time = time;
 		}
@@ -186,7 +206,7 @@ private:
 public:
 
 	block_manager(unsigned const nx, unsigned const ny, unsigned long long const fall_time) :
-		nx(nx), ny(ny), fall_time(fall_time)
+		nx(nx), ny(ny), fall_time(fall_time), last_fall_time(utils::time())
 	{
 		squares.resize(nx);
 
@@ -202,5 +222,79 @@ public:
 			move();
 
 		draw_squares();
+	}
+
+	void rotate()
+	{
+		enum
+		{
+			VALID,
+			INVALID_X,
+			INVALID_Y
+		};
+
+		auto const invalid_blocks = [](std::vector<location> const& blocks)
+		{
+			for (auto const& block : blocks)
+			{
+				if (block[0] < 0)
+					return INVALID_X;
+				else if (block[1] < 0)
+					return INVALID_Y;
+			}
+
+			return VALID;
+		};
+
+		auto const angle = std::asin(1.0);
+
+		std::vector<location> new_blocks;
+
+		for (auto const& block : current.relative_blocks)
+			new_blocks.emplace_back(block.rotate2d(angle, true));
+
+		for (auto result = invalid_blocks(new_blocks);
+			result != VALID;
+			result = invalid_blocks(new_blocks))
+			for (auto& block : new_blocks)
+				block[result == INVALID_X ? 0 : 1] += 1;
+
+		current.relative_blocks = new_blocks;
+	}
+
+	void move_down()
+	{
+		if (obstructed_down())
+			return;
+
+		for (auto& block : current.relative_blocks)
+			block[1] += 1;
+	}
+
+	void move_left()
+	{
+		if (obstructed_left())
+			return;
+
+		for (auto& block : current.relative_blocks)
+			block[0] -= 1;
+	}
+
+	void move_right()
+	{
+		if (obstructed_right())
+			return;
+
+		for (auto& block : current.relative_blocks)
+			block[0] += 1;
+	}
+
+	void drop()
+	{
+		while (!obstructed_down())
+			for (auto& block : current.relative_blocks)
+				block[1] += 1;
+
+		cement_block();
 	}
 };

@@ -3,7 +3,7 @@
 #pragma once
 
 using relative_t = float;
-using pixel_t = unsigned;
+using pixel_t = int;
 
 template<typename T>
 class coordinate: public vector<T, 3>

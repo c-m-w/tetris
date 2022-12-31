@@ -1,5 +1,312 @@
-﻿  game.cpp
+﻿  coordinate.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
 C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
 C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  font_engine.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  primitive.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  primitive_color.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  render_engine.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  window.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  game.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  tetris.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  ui.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  raw_vector.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\cole\source\repos\tetris\tetris\dependencies\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,12): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(92,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\i_drawable.hpp(93,24): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\cole\source\repos\tetris\tetris\source\ui\button.hpp(17,70): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(111,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(103): message : while compiling class template member function 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const'
+C:\Users\cole\source\repos\tetris\tetris\source\game\block_manager.hpp(254): message : see reference to function template instantiation 'vector<pixel_t,3> vector<pixel_t,3>::rotate2d(const double,bool) const' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\drawing\coordinate.hpp(25): message : see reference to class template instantiation 'vector<pixel_t,3>' being compiled
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(112,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(116,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+C:\Users\cole\source\repos\tetris\tetris\source\utils\vector.hpp(117,16): warning C4244: '=': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=pixel_t
+          ]
+  Generating Code...
   tetris.vcxproj -> C:\Users\cole\source\repos\tetris\Debug\tetris.exe

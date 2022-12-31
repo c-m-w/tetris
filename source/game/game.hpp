@@ -15,14 +15,18 @@ private:
 	};
 
 	SCREEN screen;
-	block_manager preview_manager;
-	block_manager game_manager;
+	std::unique_ptr<block_manager> current_manager = nullptr;
+
+	static void callback_up();
+	static void callback_down();
+	static void callback_left();
+	static void callback_right();
+	static void callback_space();
 
 	void create_screen();
+	void init_manager();
 
 public:
-
-	game();
 
 	bool init() override;
 
