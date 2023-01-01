@@ -37,9 +37,6 @@ void game::create_screen()
 	{
 	case SCREEN_TITLE:
 	{
-		main_title->set_anchor(ui_types::text::ANCHOR_CENTER);
-		begin_game->set_anchor(ui_types::text::ANCHOR_CENTER);
-		scoreboard->set_anchor(ui_types::text::ANCHOR_CENTER);
 
 		body->add_child(main_title);
 		body->add_child(begin_game);
@@ -49,9 +46,6 @@ void game::create_screen()
 
 	case SCREEN_GAME:
 	{
-		score_value->set_anchor(ui_types::text::ANCHOR_RIGHT);
-		time_value->set_anchor(ui_types::text::ANCHOR_RIGHT);
-
 		body->add_child(back_to_title);
 		body->add_child(game_stats);
 		game_stats->add_child(score_label);
@@ -60,6 +54,13 @@ void game::create_screen()
 		game_stats->add_child(time_value);
 
 		game_time = utils::time() / 1000ull;
+	}
+	break;
+
+	case SCREEN_GAME_OVER:
+	{
+		body->add_child(game_over);
+		body->add_child(exit);
 	}
 	break;
 	}
@@ -73,9 +74,15 @@ void game::init_manager()
 		current_manager.release();
 
 	if (SCREEN_TITLE == screen)
-		current_manager = std::make_unique<block_manager>(30, 20, 500, []() {game::get()->increment_score(); });
+		current_manager = std::make_unique<block_manager>(30, 20, 500,
+														  []() {game::get()->increment_score(); },
+														  block_manager::timing_constant,
+														  []() { game::get()->init_manager(); });
 	else if (SCREEN_GAME == screen)
-		current_manager = std::make_unique<block_manager>(10, 20, 350, []() {game::get()->increment_score(); });
+		current_manager = std::make_unique<block_manager>(10, 20, 350,
+														  []() {game::get()->increment_score(); },
+														  block_manager::timing_standard,
+														  []() {game::get()->navigate(SCREEN_GAME_OVER); });
 	else
 		current_manager = nullptr;
 }
@@ -105,8 +112,14 @@ game::game()
 									  [](void*) { game::get()->navigate(SCREEN_GAME); });
 	scoreboard = new ui_types::button("scoreboard",
 									  ui_types::TEXT_REGULAR,
-									  { WINDOW_WIDTH / 2, 160 },
+									  { WINDOW_WIDTH / 2, 180 },
 									  [](void*) { });
+	main_title->set_anchor(ui_types::text::ANCHOR_CENTER);
+	begin_game->set_anchor(ui_types::text::ANCHOR_CENTER);
+	scoreboard->set_anchor(ui_types::text::ANCHOR_CENTER);
+
+	begin_game->fix_width(120);
+	scoreboard->fix_width(120);
 
 	/******************************
 	*
@@ -118,24 +131,44 @@ game::game()
 										 { 20, 20 },
 										 [](void*) { game::get()->navigate(SCREEN_TITLE); });
 	game_stats = new ui_types::container({ 750, 10 },
-										 { 140, 100 }, 
+										 { 140, 65 }, 
 										 ui_types::container::DRAW_OUTLINE);
 	score_label = new ui_types::text("score: ",
-							   ui_types::TEXT_REGULAR,
-							   { 10, 10 },
-							   ui_types::white);
+									 ui_types::TEXT_REGULAR,
+									 { 10, 10 },
+									 ui_types::white);
 	score_value = new ui_types::text(std::to_string(score),
-		ui_types::TEXT_REGULAR,
-		{ 120, 10 },
-		ui_types::white);
+									 ui_types::TEXT_REGULAR,
+									 { 120, 10 },
+									 ui_types::white);
 	time_label = new ui_types::text("time: ",
-							  ui_types::TEXT_REGULAR,
-							  { 10, 30 },
-							  ui_types::white);
+									ui_types::TEXT_REGULAR,
+									{ 10, 40 },
+									ui_types::white);
 	time_value = new ui_types::text("0",
-		ui_types::TEXT_REGULAR,
-		{ 120, 30 },
-		ui_types::white);
+									ui_types::TEXT_REGULAR,
+									{ 120, 40 },
+									ui_types::white);
+	score_value->set_anchor(ui_types::text::ANCHOR_RIGHT);
+	time_value->set_anchor(ui_types::text::ANCHOR_RIGHT);
+
+	/******************************
+	*
+	* game over screen elements
+	*
+	******************************/
+	game_over = new ui_types::text("game over",
+								   ui_types::TEXT_LARGE,
+								   { WINDOW_WIDTH / 2, 40 },
+								   ui_types::bright_white);
+	exit = new ui_types::button("exit",
+								ui_types::TEXT_REGULAR,
+								{ WINDOW_WIDTH / 2, 125 },
+								[](void*) { should_exit = true; });
+	game_over->set_anchor(ui_types::text::ANCHOR_CENTER);
+	exit->set_anchor(ui_types::text::ANCHOR_CENTER);
+
+	exit->fix_width(120);
 }
 
 game::~game()

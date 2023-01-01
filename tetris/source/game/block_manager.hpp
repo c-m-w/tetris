@@ -29,6 +29,21 @@ public:
 		BLOCK_TYPE block_type = BLOCK_NONE;
 	};
 
+	using timing_function_t = std::function<utils::moment_t(int const, utils::moment_t const)>;
+
+	static inline utils::moment_t timing_constant([[ maybe_unused ]] int const n_blocks,
+												  utils::moment_t start_interval)
+	{
+		return start_interval;
+	}
+
+	static inline utils::moment_t timing_standard(int const n_blocks,
+												  utils::moment_t start_interval)
+	{
+
+		return static_cast<utils::moment_t>(start_interval * std::exp(-static_cast<double>(3 * (n_blocks - 1) / start_interval)));
+	}
+
 	inline static const std::vector<location> block_relative_locations[BLOCK_MAX]
 	{
 		{},
@@ -98,10 +113,13 @@ private:
 	unsigned const nx, ny;
 	unsigned long long const fall_time;
 	unsigned long long last_fall_time;
+	unsigned n_blocks = 0;
 	location grid_offset;
 	block_t current;
 	std::vector<std::vector<square_t>> squares;
 	std::function<void(void)> clear_row_callback;
+	std::function<void(void)> game_over_callback;
+	timing_function_t timing_function;
 
 	void new_block()
 	{
@@ -114,12 +132,15 @@ private:
 			x_extension = std::max(x_extension, static_cast<int>(block[0]));
 
 		current.position = { utils::random_number(0, static_cast<int>(nx) - x_extension - 1), 0 };
+		n_blocks++;
+		if (block_occluded())
+			game_over_callback();
 	}
 
-	bool obstructed_down()
+	bool obstructed_down(block_t * const p)
 	{
-		for (auto const block : current.relative_blocks)
-			if (auto const abs = current.position + block;
+		for (auto const& block : p->relative_blocks)
+			if (auto const abs = p->position + block;
 				abs[1] == ny - 1
 				|| squares[abs[0]][abs[1] + 1].parent_block != BLOCK_NONE)
 				return true;
@@ -188,9 +209,9 @@ private:
 
 	void move()
 	{
-		if (auto const time = utils::time(); time - last_fall_time >= fall_time)
+		if (auto const time = utils::time(); time - last_fall_time >= timing_function(n_blocks, fall_time))
 		{
-			if (obstructed_down())
+			if (obstructed_down(&current))
 				cement_block();
 			else
 				current.position[1] += 1;
@@ -213,14 +234,20 @@ private:
 		return false;
 	}
 
-	void draw_square(BLOCK_TYPE const type, location const & position)
+	void draw_square(BLOCK_TYPE const type, location const& position, bool const translucent = false)
 	{
 		if (type == BLOCK_NONE)
 			return;
 
 		auto const screen_position = position * BLOCK_SIZE;
-		auto const& light = block_light_colors[type];
-		auto const& dark = block_dark_colors[type];
+		auto light = block_light_colors[type];
+		auto dark = block_dark_colors[type];
+
+		if (translucent)
+		{
+			light[3] = 0.5;
+			dark[3] = 0.5;
+		}
 
 		render_engine::get()->draw_rect(grid_offset + screen_position,
 										{ BLOCK_SIZE, BLOCK_SIZE }, 
@@ -244,6 +271,25 @@ private:
 			draw_square(current.block_type, current.position + block);
 	}
 
+	void draw_drop_preview()
+	{
+		auto block_preview = current;
+
+		while (!obstructed_down(&block_preview))
+			block_preview.position[1] += 1;
+
+		for (auto i = 0u; i < block_preview.relative_blocks.size(); i++)
+		{
+			auto const square_preview = block_preview.position + block_preview.relative_blocks[i];
+			auto const square_current = current.position + current.relative_blocks[i];
+
+			if (square_preview == square_current)
+				continue;
+
+			draw_square(block_preview.block_type, square_preview, true);
+		}
+	}
+
 	void draw_outline()
 	{
 		render_engine::get()->draw_rect(grid_offset - 2, { nx * BLOCK_SIZE + 4, ny * BLOCK_SIZE + 4}, ui_types::blue, true);
@@ -251,8 +297,15 @@ private:
 
 public:
 
-	block_manager(unsigned const nx, unsigned const ny, unsigned long long const fall_time, std::function<void(void)> clear_row_callback) :
-		nx(nx), ny(ny), fall_time(fall_time), last_fall_time(utils::time()), clear_row_callback(clear_row_callback)
+	block_manager(unsigned const nx,
+				  unsigned const ny,
+				  unsigned long long const fall_time,
+				  std::function<void(void)> clear_row_callback,
+				  timing_function_t const timing_function,
+				  std::function<void(void)> game_over_callback) :
+		nx(nx), ny(ny), fall_time(fall_time), last_fall_time(utils::time()),
+		clear_row_callback(clear_row_callback), timing_function(timing_function),
+		game_over_callback(game_over_callback)
 	{
 		auto const grid_width = nx * BLOCK_SIZE;
 
@@ -272,6 +325,7 @@ public:
 			move();
 
 		draw_squares();
+		draw_drop_preview();
 		draw_outline();
 	}
 
@@ -326,7 +380,7 @@ public:
 
 	void move_down()
 	{
-		if (obstructed_down())
+		if (obstructed_down(&current))
 			return;
 
 		current.position[1] += 1;
@@ -350,7 +404,7 @@ public:
 
 	void drop()
 	{
-		while (!obstructed_down())
+		while (!obstructed_down(&current))
 			current.position[1] += 1;
 
 		cement_block();

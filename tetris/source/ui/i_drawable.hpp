@@ -24,6 +24,7 @@ protected:
 	i_drawable* parent = nullptr;
 	location position = {};
 	dimension size = {};
+	pixel_t w_fixed = 0;
 	DRAWABLE_TYPE type;
 	ANCHOR_TYPE anchor = ANCHOR_LEFT;
 	bool hovered = false;
@@ -48,17 +49,25 @@ protected:
 		size = s;
 	}
 
+	dimension get_size()
+	{
+		if (0 != w_fixed)
+			return { w_fixed, size[1] };
+
+		return size;
+	}
+
 	location get_anchor_position()
 	{
 		switch (anchor)
 		{
 		case ANCHOR_CENTER:
 
-			return { position[0] - size[0] / 2, position[1] };
+			return { position[0] - get_size()[0] / 2, position[1] };
 
 		case ANCHOR_RIGHT:
 
-			return { position[0] - size[0], position[1] };
+			return { position[0] - get_size()[0], position[1] };
 
 		default:
 
@@ -96,6 +105,11 @@ public:
 	void set_anchor(ANCHOR_TYPE const a)
 	{
 		anchor = a;
+	}
+
+	void fix_width(pixel_t const w)
+	{
+		w_fixed = w;
 	}
 
 	friend class container;

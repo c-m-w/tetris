@@ -38,17 +38,18 @@ public:
 	void draw() override
 	{
 		auto const abs = get_absolute_position();
+		auto const s = get_size();
 
 		switch (draw_mode)
 		{
 		case DRAW_FILL:
 
-			render_engine::get()->draw_rect(position[0], position[1], dark_blue);
+			render_engine::get()->draw_rect(abs, s, dark_blue);
 			break;
 
 		case DRAW_OUTLINE:
 
-			render_engine::get()->draw_rect(position[0], position[1], light_blue, true);
+			render_engine::get()->draw_rect(abs, s, light_blue, true);
 			break;
 
 		default:

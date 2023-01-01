@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "types.hpp"
+
 namespace utils
 {
 	inline void allocate_console()
@@ -10,7 +12,7 @@ namespace utils
 		freopen("CONOUT$", "w", stdout);
 	}
 
-	inline unsigned long long time()
+	inline moment_t time()
 	{
 		return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	}
@@ -25,6 +27,11 @@ namespace utils
 
 	template<>
 	int random_number<int>(int const min, int const max);
+
+	template<typename It11, typename It12,
+		typename It21, typename It22,
+		typename BinaryOperation>
+	void double_iterator(It11 i_start, It12 i_end, It21 j_start, It22 j_end, BinaryOperation op);
 }
 
 #include "singleton.hpp"

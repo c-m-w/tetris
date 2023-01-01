@@ -11,7 +11,8 @@ public:
 	enum SCREEN
 	{
 		SCREEN_TITLE,
-		SCREEN_GAME
+		SCREEN_GAME,
+		SCREEN_GAME_OVER
 	};
 
 private:
@@ -43,6 +44,14 @@ private:
 	static inline ui_types::text* score_value;
 	static inline ui_types::text* time_label;
 	static inline ui_types::text* time_value;
+
+	/******************************
+	*
+	* game over screen elements
+	*
+	******************************/
+	static inline ui_types::text* game_over;
+	static inline ui_types::button* exit;
 
 	/******************************
 	*

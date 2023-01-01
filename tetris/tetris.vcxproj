@@ -179,6 +179,7 @@
     <ClInclude Include="source\utils\i_base.hpp" />
     <ClInclude Include="source\utils\raw_vector.hpp" />
     <ClInclude Include="source\utils\singleton.hpp" />
+    <ClInclude Include="source\utils\types.hpp" />
     <ClInclude Include="source\utils\utils.hpp" />
     <ClInclude Include="source\utils\vector.hpp" />
   </ItemGroup>

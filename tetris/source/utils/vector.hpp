@@ -18,8 +18,7 @@ public:
 	template<typename T1, unsigned N1>
 	vector(vector<T1, N1> rhs)
 	{
-		for (auto i = 0u; i < N; i++)
-			this->components[i] = rhs.components[i];
+		components = rhs.components;
 	}
 
 	// pull out first parameter so copy ctor doesnt use this
@@ -37,71 +36,95 @@ public:
 		return components[i];
 	}
 
-	vector<T, N> operator+(vector<T, N> const rhs) const // todo make this better. this is ass
+	bool operator==(vector<T, N> const rhs) const
 	{
-		vector<T, N> result;
+		auto result = true;
+		auto const p = &result;
 
-		for (auto i = 0u; i < components.size(); i++)
-			result[i] = (*this)[i] + rhs[i];
+		utils::double_iterator(components.cbegin(), components.cend(),
+			rhs.components.cbegin(), rhs.components.cend(),
+			[p](T const lhs, T const rhs) mutable { 
+				*p &= lhs == rhs; 
+			});
+
+		return result;
+	}
+
+	vector<T, N> operator+(vector<T, N> const rhs) const
+	{
+		auto result = rhs;
+
+		std::transform(components.cbegin(), 
+					   components.cend(),
+					   result.components.cbegin(),
+					   result.components.begin(),
+					   std::plus<>{});
 
 		return result;
 	}
 
 	vector<T, N>& operator+=(vector<T, N> const& rhs)
 	{
-		*this = *this + rhs;
-		return *this;
+		return *this = *this + rhs;
 	}
 
-	vector<T, N> operator-(vector<T, N> const rhs) const // todo make this better. this is ass
+	vector<T, N> operator-(vector<T, N> const rhs) const
 	{
-		vector<T, N> result;
+		auto result = rhs;
 
-		for (auto i = 0u; i < components.size(); i++)
-			result[i] = (*this)[i] - rhs[i];
+		std::transform(components.cbegin(),
+					   components.cend(),
+					   result.components.cbegin(),
+					   result.components.begin(),
+					   std::minus<>{});
 
 		return result;
 	}
 
 	vector<T, N>& operator-=(vector<T, N> const& rhs)
 	{
-		*this = *this - rhs;
-		return *this;
+		return *this = *this - rhs;
 	}
 
-	vector<T, N> operator+(T const rhs) const // todo make this better. this is ass
+	vector<T, N> operator+(T const rhs) const
 	{
-		vector<T, N> result;
+		auto result = *this;
 
-		for (auto i = 0u; i < components.size(); i++)
-			result[i] = (*this)[i] + rhs;
+		std::transform(result.components.cbegin(),
+					   result.components.cend(),
+					   result.components.begin(),
+					   [rhs](T const c) { return c + rhs; });
 
 		return result;
 	}
 
-	vector<T, N> operator/(T const rhs) const // todo make this better. this is ass
+	vector<T, N> operator/(T const rhs) const
 	{
-		vector<T, N> result;
+		auto result = *this;
 
-		for (auto i = 0u; i < components.size(); i++)
-			result[i] = (*this)[i] / rhs;
+		std::transform(result.components.cbegin(),
+					   result.components.cend(),
+					   result.components.begin(),
+					   [rhs](T const c) { return c / rhs; });
 
 		return result;
 	}
 
-	vector<T, N> operator*(T const rhs) const // todo make this better. this is ass
+	vector<T, N> operator*(T const rhs) const
 	{
-		vector<T, N> result;
+		auto result = *this;
 
-		for (auto i = 0u; i < components.size(); i++)
-			result[i] = (*this)[i] * rhs;
+		std::transform(result.components.cbegin(),
+					   result.components.cend(),
+					   result.components.begin(),
+					   [rhs](T const c) { return c * rhs; });
 
 		return result;
 	}
 
 	vector<T, N> rotate2d(double const angle, bool round = false) const
 	{
-		vector<T, N> result = *this;
+		auto result = *this;
 
 		/*
 		*
