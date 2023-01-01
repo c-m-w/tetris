@@ -98,6 +98,7 @@ private:
 	unsigned const nx, ny;
 	unsigned long long const fall_time;
 	unsigned long long last_fall_time;
+	location grid_offset;
 	block_t current;
 	std::vector<std::vector<square_t>> squares;
 
@@ -172,6 +173,20 @@ private:
 		}
 	}
 
+	bool block_occluded()
+	{
+
+		for (auto const& block : current.relative_blocks)
+		{
+			auto const abs = current.position + block;
+
+			if (BLOCK_NONE != squares[abs[0]][abs[1]].parent_block)
+				return true;
+		}
+
+		return false;
+	}
+
 	void draw_square(BLOCK_TYPE const type, location const & position)
 	{
 		if (type == BLOCK_NONE)
@@ -181,10 +196,10 @@ private:
 		auto const& light = block_light_colors[type];
 		auto const& dark = block_dark_colors[type];
 
-		render_engine::get()->draw_rect(screen_position, 
+		render_engine::get()->draw_rect(grid_offset + screen_position,
 										{ BLOCK_SIZE, BLOCK_SIZE }, 
 										light, dark, dark, light);
-		render_engine::get()->draw_rect(screen_position + BLOCK_BORDER, 
+		render_engine::get()->draw_rect(grid_offset + screen_position + BLOCK_BORDER,
 										{ BLOCK_SIZE - BLOCK_BORDER * 2, BLOCK_SIZE - BLOCK_BORDER * 2 }, 
 										dark, light, light, dark);
 	}
@@ -203,11 +218,20 @@ private:
 			draw_square(current.block_type, current.position + block);
 	}
 
+	void draw_outline()
+	{
+		render_engine::get()->draw_rect(grid_offset - 2, { nx * BLOCK_SIZE + 4, ny * BLOCK_SIZE + 4}, ui_types::blue, true);
+	}
+
 public:
 
 	block_manager(unsigned const nx, unsigned const ny, unsigned long long const fall_time) :
 		nx(nx), ny(ny), fall_time(fall_time), last_fall_time(utils::time())
 	{
+		auto const grid_width = nx * BLOCK_SIZE;
+
+		grid_offset = { WINDOW_WIDTH / 2 - grid_width / 2, 0 };
+
 		squares.resize(nx);
 
 		for (auto& row : squares)
@@ -222,6 +246,7 @@ public:
 			move();
 
 		draw_squares();
+		draw_outline();
 	}
 
 	void rotate()
@@ -229,18 +254,24 @@ public:
 		enum
 		{
 			VALID,
-			INVALID_X,
-			INVALID_Y
+			SMALL_X,
+			LARGE_X,
+			SMALL_Y,
+			LARGE_Y
 		};
 
-		auto const invalid_blocks = [](std::vector<location> const& blocks)
+		auto const invalid_blocks = [this](std::vector<location> const& blocks, const location & position)
 		{
 			for (auto const& block : blocks)
 			{
-				if (block[0] < 0)
-					return INVALID_X;
-				else if (block[1] < 0)
-					return INVALID_Y;
+				if (block[0] + position[0]< 0)
+					return SMALL_X;
+				else if (block[0] + position[0] >= nx)
+					return LARGE_X;
+				else if (block[1] + position[1] < 0)
+					return SMALL_Y;
+				else if (block[1] + position[1] >= ny)
+					return LARGE_Y;
 			}
 
 			return VALID;
@@ -253,13 +284,18 @@ public:
 		for (auto const& block : current.relative_blocks)
 			new_blocks.emplace_back(block.rotate2d(angle, true));
 
-		for (auto result = invalid_blocks(new_blocks);
+		for (auto result = invalid_blocks(new_blocks, current.position);
 			result != VALID;
-			result = invalid_blocks(new_blocks))
+			result = invalid_blocks(new_blocks, current.position))
 			for (auto& block : new_blocks)
-				block[result == INVALID_X ? 0 : 1] += 1;
+				block[result == SMALL_X || result == LARGE_X ? 0 : 1] += result == LARGE_X || result == LARGE_Y ? -1 : 1;
+
+		auto const old_block_copy = current.relative_blocks;
 
 		current.relative_blocks = new_blocks;
+
+		if (block_occluded())
+			current.relative_blocks = old_block_copy;
 	}
 
 	void move_down()
@@ -267,8 +303,7 @@ public:
 		if (obstructed_down())
 			return;
 
-		for (auto& block : current.relative_blocks)
-			block[1] += 1;
+		current.position[1] += 1;
 	}
 
 	void move_left()
@@ -276,8 +311,7 @@ public:
 		if (obstructed_left())
 			return;
 
-		for (auto& block : current.relative_blocks)
-			block[0] -= 1;
+		current.position[0] -= 1;
 	}
 
 	void move_right()
@@ -285,15 +319,13 @@ public:
 		if (obstructed_right())
 			return;
 
-		for (auto& block : current.relative_blocks)
-			block[0] += 1;
+		current.position[0] += 1;
 	}
 
 	void drop()
 	{
 		while (!obstructed_down())
-			for (auto& block : current.relative_blocks)
-				block[1] += 1;
+			current.position[1] += 1;
 
 		cement_block();
 	}
