@@ -73,9 +73,9 @@ void game::init_manager()
 		current_manager.release();
 
 	if (SCREEN_TITLE == screen)
-		current_manager = std::make_unique<block_manager>(30, 20, 500);
+		current_manager = std::make_unique<block_manager>(30, 20, 500, []() {game::get()->increment_score(); });
 	else if (SCREEN_GAME == screen)
-		current_manager = std::make_unique<block_manager>(10, 20, 350);
+		current_manager = std::make_unique<block_manager>(10, 20, 350, []() {game::get()->increment_score(); });
 	else
 		current_manager = nullptr;
 }
@@ -180,4 +180,10 @@ void game::navigate(SCREEN to)
 {
 	screen = to;
 	create_screen();
+}
+
+void game::increment_score()
+{
+	score += SCORE_INCREMENT;
+	score_value->set_text(std::to_string(score));
 }

@@ -101,6 +101,7 @@ private:
 	location grid_offset;
 	block_t current;
 	std::vector<std::vector<square_t>> squares;
+	std::function<void(void)> clear_row_callback;
 
 	void new_block()
 	{
@@ -148,6 +149,30 @@ private:
 		return false;
 	}
 
+	void shift_rows_down(unsigned const start_y)
+	{
+		for (int y = start_y; y >= 0; y--)
+			for (auto x = 0u; x < nx; x++)
+				squares[x][y + 1] = squares[x][y];
+	}
+
+	void clear_rows()
+	{
+		for (int y = ny - 1; y >= 0; y--)
+		{
+			auto row_filled = true;
+
+			for (auto x = 0u; x < nx && row_filled; x++)
+				row_filled &= BLOCK_NONE != squares[x][y].parent_block;
+
+			if (row_filled)
+			{
+				shift_rows_down(y - 1);
+				clear_row_callback();
+			}
+		}
+	}
+
 	void cement_block()
 	{
 		for (auto const& block : current.relative_blocks)
@@ -158,6 +183,7 @@ private:
 		}
 
 		current.block_type = BLOCK_NONE;
+		clear_rows();
 	}
 
 	void move()
@@ -225,8 +251,8 @@ private:
 
 public:
 
-	block_manager(unsigned const nx, unsigned const ny, unsigned long long const fall_time) :
-		nx(nx), ny(ny), fall_time(fall_time), last_fall_time(utils::time())
+	block_manager(unsigned const nx, unsigned const ny, unsigned long long const fall_time, std::function<void(void)> clear_row_callback) :
+		nx(nx), ny(ny), fall_time(fall_time), last_fall_time(utils::time()), clear_row_callback(clear_row_callback)
 	{
 		auto const grid_width = nx * BLOCK_SIZE;
 

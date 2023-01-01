@@ -16,6 +16,8 @@ public:
 
 private:
 
+	constexpr static auto SCORE_INCREMENT = 10;
+
 	SCREEN screen;
 	std::unique_ptr<block_manager> current_manager = nullptr;
 	unsigned long long game_time = 0;
@@ -42,6 +44,11 @@ private:
 	static inline ui_types::text* time_label;
 	static inline ui_types::text* time_value;
 
+	/******************************
+	*
+	* callbacks
+	*
+	******************************/
 	static void callback_up();
 	static void callback_down();
 	static void callback_left();
@@ -50,7 +57,6 @@ private:
 
 	void create_screen();
 	void init_manager();
-	
 	void update_time();
 
 public:
@@ -62,4 +68,5 @@ public:
 
 	void frame();
 	void navigate(SCREEN to);
+	void increment_score();
 };
