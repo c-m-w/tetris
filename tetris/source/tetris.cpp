@@ -13,6 +13,11 @@ int WINAPI WinMain(
 	utils::allocate_console();
 #endif
 
+	auto u = vector<float, 3>();
+	auto v = vector<float, 3>();
+
+	auto w = u + v;
+
 	if (!window::get()->init()
 		|| !render_engine::get()->init()
 		|| !font_engine::get()->init()
